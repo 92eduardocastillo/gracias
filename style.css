@@ -1,12 +1,17 @@
-:root {
-    --Dark-cyan: hsl(185, 75%, 39%);
-    --Very-dark-desaturated-blue: hsl(229, 23%, 23%);
-    --Dark-grayish-blue: hsl(227, 10%, 46%);   
-}
-
-html{
-    background-color: rgb(68, 65, 245);
-}
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 1 rem = 10 px
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    font-family: "Kumbh Sans", sans-serif;
+    background-color: var(--dark-cyan);
+  }
 
 .flex {
     display: flex;
