@@ -1,8 +1,9 @@
-name: Deploy Dev to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
+      - main
       - dev
 
 jobs:
@@ -22,5 +23,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: ./ # Carpeta raíz
-          destination_dir: dev # Subcarpeta para diferenciar desarrollo
+          destination_dir: ${{ github.ref == 'refs/heads/dev' && 'dev' || '' }} # Determina la subcarpeta según la rama
