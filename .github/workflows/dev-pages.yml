@@ -19,10 +19,19 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Desplegar en GitHub Pages
+      - name: Desplegar en GitHub Pages para main
+        if: github.ref == 'refs/heads/main'  # Solo cuando el push es a main
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./ # Carpeta raíz
-          destination_dir: ${{ github.ref == 'refs/heads/dev' && 'dev' || '' }} # Determina la subcarpeta según la rama
+          publish_dir: ./ # Carpeta raíz (para la rama main)
+
+      - name: Desplegar en GitHub Pages para dev
+        if: github.ref == 'refs/heads/dev'  # Solo cuando el push es a dev
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./ # Carpeta raíz (para la rama dev)
+          destination_dir: dev # Subcarpeta para la rama dev
